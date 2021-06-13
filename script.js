@@ -99,3 +99,34 @@ tabsContainer.addEventListener("click", (e) => {
         .querySelector(`.operations__content--${clicked.dataset.tab}`)
         .classList.add("operations__content--active");
 });
+
+//Handle Menu Fade
+const handleHover = function (e) {
+    if (e.target.classList.contains("nav__link")) {
+        const link = e.target;
+        const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+        const logo = link.closest(".nav").querySelector("img");
+
+        siblings.forEach((el) => {
+            if (el !== link) el.style.opacity = this;
+        });
+        logo.style.opacity = this;
+    }
+};
+
+// Passing "argument" into handler
+nav.addEventListener("mouseover", handleHover.bind(0.5));
+nav.addEventListener("mouseout", handleHover.bind(1));
+
+//Sticky Navigation Logic
+const header = document.querySelector(".header");
+const stickyNav = (entries) => {
+    const [entry] = entries;
+    if (!entry.isIntersecting) nav.classList.add("sticky");
+    else nav.classList.remove("sticky");
+};
+const headerObserver = new IntersectionObserver(stickyNav, {
+    root: null,
+    threshold: 0,
+});
+headerObserver.observe(header);
