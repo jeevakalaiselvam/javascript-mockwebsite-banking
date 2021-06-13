@@ -132,3 +132,43 @@ const headerObserver = new IntersectionObserver(stickyNav, {
     rootMargin: `-${navHeight}px`, //Add extra padding
 });
 headerObserver.observe(header);
+
+//Fade In animation for sections
+const allSections = document.querySelectorAll(".section");
+const revealSection = (entries, observer) => {
+    const [entry] = entries;
+    if (!entry.isIntersecting) {
+        return;
+    }
+    entry.target.classList.remove("section--hidden");
+    observer.unobserve(entry.target);
+};
+const sectionObserver = new IntersectionObserver(revealSection, {
+    root: null,
+    threshold: 0.15,
+});
+allSections.forEach((section) => {
+    section.classList.add("section--hidden");
+    sectionObserver.observe(section);
+});
+
+//Lazy Loading Logic for all images that need to be replaced with high res images
+const imageTargets = document.querySelectorAll("img[data-src]");
+const loadImage = (entries, observer) => {
+    const [entry] = entries;
+    if (!entry.isIntersecting) return;
+
+    entry.target.src = entry.target.dataset.src;
+
+    //Remove blur on low resolution images when high res image is loaded
+    entry.target.addEventListener("load", () => {
+        entry.target.classList.remove("lazy-img");
+    });
+    observer.unobserve(entry.target); //Unobserve from the target as the image is already loaded ie our work is done
+};
+const imageObserver = new IntersectionObserver(loadImage, {
+    root: null,
+    threshold: 0,
+    rootMargin: "200px", //Make sure that the upcoming images are loading before user reaches them
+});
+imageTargets.forEach((image) => imageObserver.observe(image));
