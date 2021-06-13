@@ -172,3 +172,38 @@ const imageObserver = new IntersectionObserver(loadImage, {
     rootMargin: "200px", //Make sure that the upcoming images are loading before user reaches them
 });
 imageTargets.forEach((image) => imageObserver.observe(image));
+
+//Slider Logic
+const slides = document.querySelectorAll(".slide");
+const buttonLeft = document.querySelector(".slider__btn--left");
+const buttonRight = document.querySelector(".slider__btn--right");
+
+let currentSlide = 0;
+
+let maxSlides = slides.length;
+
+const goToSlide = () => {
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${100 * (index - currentSlide)}%)`;
+    });
+};
+
+goToSlide(0);
+
+buttonLeft.addEventListener("click", (e) => {
+    if (currentSlide === 0) {
+        currentSlide = maxSlides - 1;
+    } else {
+        currentSlide--;
+    }
+
+    goToSlide();
+});
+buttonRight.addEventListener("click", (e) => {
+    if (currentSlide === maxSlides - 1) {
+        currentSlide = 0;
+    } else {
+        currentSlide++;
+    }
+    goToSlide();
+});
