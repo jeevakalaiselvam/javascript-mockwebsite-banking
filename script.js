@@ -177,12 +177,24 @@ imageTargets.forEach((image) => imageObserver.observe(image));
 const slides = document.querySelectorAll(".slide");
 const buttonLeft = document.querySelector(".slider__btn--left");
 const buttonRight = document.querySelector(".slider__btn--right");
+const dotContainer = document.querySelector(".dots");
 
 let currentSlide = 0;
 
 let maxSlides = slides.length;
 
-const goToSlide = () => {
+const createDots = () => {
+    slides.forEach((_, index) => {
+        dotContainer.insertAdjacentHTML(
+            "beforeend",
+            `<button class="dots__dot" data-slide="${index}"></button>`
+        );
+    });
+};
+
+createDots();
+
+const goToSlide = (currentSlide) => {
     slides.forEach((slide, index) => {
         slide.style.transform = `translateX(${100 * (index - currentSlide)}%)`;
     });
@@ -197,7 +209,7 @@ const previousSlide = () => {
         currentSlide--;
     }
 
-    goToSlide();
+    goToSlide(currentSlide);
 };
 
 const nextSlide = () => {
@@ -206,7 +218,7 @@ const nextSlide = () => {
     } else {
         currentSlide++;
     }
-    goToSlide();
+    goToSlide(currentSlide);
 };
 
 buttonLeft.addEventListener("click", (e) => {
@@ -219,4 +231,11 @@ buttonRight.addEventListener("click", (e) => {
 document.addEventListener("keyup", (e) => {
     if (e.key === "ArrowLeft") previousSlide();
     if (e.key === "ArrowRight") nextSlide();
+});
+
+dotContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("dots__dot")) {
+        const { slide } = event.target.dataset;
+        goToSlide(slide);
+    }
 });
