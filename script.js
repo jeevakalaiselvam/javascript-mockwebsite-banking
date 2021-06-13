@@ -190,7 +190,7 @@ const goToSlide = () => {
 
 goToSlide(0);
 
-buttonLeft.addEventListener("click", (e) => {
+const previousSlide = () => {
     if (currentSlide === 0) {
         currentSlide = maxSlides - 1;
     } else {
@@ -198,12 +198,25 @@ buttonLeft.addEventListener("click", (e) => {
     }
 
     goToSlide();
-});
-buttonRight.addEventListener("click", (e) => {
+};
+
+const nextSlide = () => {
     if (currentSlide === maxSlides - 1) {
         currentSlide = 0;
     } else {
         currentSlide++;
     }
     goToSlide();
+};
+
+buttonLeft.addEventListener("click", (e) => {
+    previousSlide();
+});
+buttonRight.addEventListener("click", (e) => {
+    nextSlide();
+});
+
+document.addEventListener("keyup", (e) => {
+    if (e.key === "ArrowLeft") previousSlide();
+    if (e.key === "ArrowRight") nextSlide();
 });
