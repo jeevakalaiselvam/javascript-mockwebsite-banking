@@ -202,6 +202,15 @@ const goToSlide = (currentSlide) => {
 
 goToSlide(0);
 
+const activateDot = (slide) => {
+    document
+        .querySelectorAll(".dots__dot")
+        .forEach((dot) => dot.classList.remove("dots__dot--active"));
+    document
+        .querySelector(`.dots__dot[data-slide="${slide}"]`)
+        .classList.add("dots__dot--active");
+};
+
 const previousSlide = () => {
     if (currentSlide === 0) {
         currentSlide = maxSlides - 1;
@@ -210,6 +219,7 @@ const previousSlide = () => {
     }
 
     goToSlide(currentSlide);
+    activateDot(currentSlide);
 };
 
 const nextSlide = () => {
@@ -219,6 +229,7 @@ const nextSlide = () => {
         currentSlide++;
     }
     goToSlide(currentSlide);
+    activateDot(currentSlide);
 };
 
 buttonLeft.addEventListener("click", (e) => {
