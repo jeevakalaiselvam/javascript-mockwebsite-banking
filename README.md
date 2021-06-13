@@ -1,6 +1,6 @@
-# Banking Application Frontend
+# Banking Website MockUI
 
-A simple minimalistic banking application mock using javascript
+A simple mock ui for banking application
 
 # Live Version
 
