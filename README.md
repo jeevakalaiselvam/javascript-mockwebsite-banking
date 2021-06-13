@@ -4,7 +4,7 @@ A simple mock ui for banking website using features of Javascript Web API
 
 # Live Version
 
-[CHECK WEBSITE](https://jeevakalaiselvam.github.io/javascript-indianbank-simple/)
+[CHECK WEBSITE](https://jeevakalaiselvam.github.io/javascript-mockwebsite-banking/)
 
 # Screenshots
 
