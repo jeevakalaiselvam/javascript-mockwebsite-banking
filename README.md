@@ -1,26 +1,14 @@
 # Banking Website MockUI
 
-A simple mock ui for banking application
+A simple mock ui for banking website using features of Javascript Web API
 
 # Live Version
 
-[CHECK APPLICATION](https://jeevakalaiselvam.github.io/javascript-indianbank-simple/)
-
-# Configurations
-
-    1. username: jk , pin: 1111
-    2. username: sk , pin: 2222
+[CHECK WEBSITE](https://jeevakalaiselvam.github.io/javascript-indianbank-simple/)
 
 # Screenshots
 
-### Login Page
-
 ![Screenshot](screens/screen1.png)
-
-### Account 1
-
 ![Screenshot](screens/screen2.png)
-
-### Account 2
-
 ![Screenshot](screens/screen3.png)
+![Screenshot](screens/screen4.png)

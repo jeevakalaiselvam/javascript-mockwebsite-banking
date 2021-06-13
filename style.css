@@ -12,7 +12,11 @@
     --color-tertiary-opacity: #5ec5763a;
     --gradient-primary: linear-gradient(to top left, #ffb003, #ffcb03);
     --gradient-secondary: linear-gradient(to top left, #39b385, #9be15d);
-    --gradient-tertiary: linear-gradient(to top left, #5892ff, #2a5ac2);
+    --gradient-tertiary: linear-gradient(
+        to top left,
+        #5892ff,
+        rgb(71, 113, 204)
+    );
 }
 
 * {
